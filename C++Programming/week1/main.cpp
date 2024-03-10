@@ -1,10 +1,11 @@
 #include <iostream>
-using namespace std;
 
 int sum2(int a, int b);
 int sub2(int a, int b);
 int mul2(int a, int b);
 int div2(int a, int b);
+
+using namespace std;
 
 int main() {
     int a;
