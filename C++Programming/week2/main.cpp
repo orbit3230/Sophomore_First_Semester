@@ -12,5 +12,5 @@ int main() {
         if(game(answer))
             break;
     }
-    cout << "You win!" << endl;
+    cout << "You win! " << endl;
 }

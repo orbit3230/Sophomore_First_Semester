@@ -22,7 +22,7 @@ int judge(int input, int answer) {
 
     for(int s = 0 ; s < 3 ; s++)
         for(int b = 0 ; b < 3 ; b++) {
-            if(s == b && i[s] == a[b]) {
+            if(s == b && to_string(i[s]) == to_string(a[b])) {
                 strikes++;
                 break;
             }
