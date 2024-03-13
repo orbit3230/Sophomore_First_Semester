@@ -25,6 +25,7 @@ int judge(string input, string answer) {
             else if(input[s] == answer[b])
                 balls++;
     }
+    
     cout << "Strikes: " << strikes << ", Balls: " << balls << endl;
     return strikes; 
 }
