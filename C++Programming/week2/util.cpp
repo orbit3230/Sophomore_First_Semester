@@ -5,6 +5,7 @@ using namespace std;
 
 // 숫자 랜덤 생성을 다루는 함수가 들어있다.
 string randomThree() {
+    
     string answer;
     // 0 ~ 9 사이의 난수를 발생시키는 코드
     unsigned seed = chrono::system_clock::now().time_since_epoch().count();
