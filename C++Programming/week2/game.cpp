@@ -14,6 +14,7 @@ bool game(string answer) {
     else
         return false;
 }
+
 int judge(string input, string answer) {
     int strikes = 0;
     int balls = 0;
