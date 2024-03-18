@@ -1,5 +1,4 @@
 #include <stdio.h>
-#define MAX(a, b) ((a > b) ? a : b)
 #define MAX_TERMS 101
 
 typedef struct {
@@ -7,48 +6,52 @@ typedef struct {
     int expo;
 } polynomial;
 
-polynomial y1[MAX_TERMS] = {{8, 3}, {7, 1}, {1, 0}};
-polynomial y2[MAX_TERMS] = {{10, 3}, {3, 2}, {1, 0}};
+polynomial yA[MAX_TERMS] = {{8, 3}, {7, 1}, {1, 0}};
+polynomial yB[MAX_TERMS] = {{10, 3}, {3, 2}, {1, 0}};
 polynomial y[MAX_TERMS];  // 결과 다항식
+int y1Index = 0;
+int y2Index = 0;
+int yIndex = 0;
 
-polynomial poly_add2(polynomial y1, polynomial y2) {
+void attach(float coef, int expo) {
+    y[yIndex].coef = coef;
+    y[yIndex].expo = expo;
+    yIndex++;
+}
+void poly_add2() {
     
-    int y1Index = 0,  y2Index = 0, yIndex = 0;
-    int expo_y1 = &y1.expo;
-    int expo_y2 = &y2.expo;
-    y.expo = MAX(expo_y1, expo_y2);
-    while(y1Index <= y1.expo && y2Index <= y2.expo) {
+    int expo_y1;
+    int expo_y2;
+    while(y1Index <= 2 && y2Index <= 2) {
+        expo_y1 = yA[y1Index].expo;
+        expo_y2 = yB[y2Index].expo;
         if(expo_y1 > expo_y2) {
-            y.coef[yIndex++] = y1.coef[y1Index++];
-            expo_y1--;
+            attach(yA[y1Index].coef, expo_y1);
+            y1Index++;
         }
         else if(expo_y1 == expo_y2) {
-            y.coef[yIndex++] = y1.coef[y1Index++] + y2.coef[y2Index++];
-            expo_y1--;
-            expo_y2--;
+            attach(yA[y1Index].coef + yB[y2Index].coef, expo_y1);
+            y1Index++;
+            y2Index++;
         }
         else {
-            y.coef[yIndex++] = y2.coef[y2Index++];
-            expo_y2--;
+            attach(yB[y2Index].coef, expo_y2);
+            y2Index++;
         }
     }
-    return y;
 }
-void attach(float coef, int expo) {
-    y[0] = {coef, expo};
-}
-void print_poly(polynomial y[]) {
-    for(int i = y.expo ; i > 0 ; i--)
-        printf("%3.1fx^%d + ", y.coef[y.expo - i], i);
-    printf("%3.1f \n", y.coef[y.expo]);
+void print_poly(polynomial y[], int index) {
+    int i;
+    for(i = 0 ; i < index-1 ; i++)
+        printf("%3.1fx^%d + ", y[i].coef, y[i].expo);
+    printf("%3.1f\n", y[i].coef);
 }
  int main(void)
  {
-    polynomial y;
-    print_poly(*y1);
-    print_poly(*y2);
-    y = poly_add2(y1, y2);
+    poly_add2();
+    print_poly(yA, y1Index);
+    print_poly(yB, y2Index);
     printf("-----------------------------------------------------------------------------\n");
-    print_poly(y);
+    print_poly(y, yIndex);
     return 0;
  }
