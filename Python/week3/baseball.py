@@ -4,13 +4,9 @@ def generate_number() :
     answer = []
     for i in range(3) :
         next = random.randrange(1, 10)
-        print(next)
-        print(i)
-        if(next in answer) :
-            i -= 1
-            continue
-        else :
-            answer.append(next)
+        while(next in answer) :
+            next = random.randrange(1, 10)
+        answer.append(next)
     return answer
     
 def check(guess, answer) :
@@ -33,7 +29,6 @@ def input_guess_number() :
     
 def main() :
     answer = generate_number()
-    print(answer)
     while(True) :
         guess = input_guess_number()
         strike, ball = check(guess, answer)
