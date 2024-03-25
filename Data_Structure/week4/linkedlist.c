@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 typedef int element;
-typedef struct {
+typedef struct ListNode {
     element data;
     struct ListNode* link;
 } ListNode;
@@ -16,10 +16,14 @@ ListNode* insert(ListNode* head, ListNode* pre, element value) {
 }
 // 맨 앞에 노드 삽입
 ListNode* insert_first(ListNode* head, element value) {
-    insert(head, head, value);
+    ListNode* p = (ListNode*)malloc(sizeof(ListNode));
+    p->data = value;
+    p->link = head;
+    head = p;
+    return head;
 }
 // 노드 삭제
-ListNode* remove(ListNode* head, ListNode* pre) {
+ListNode* remove_e(ListNode* head, ListNode* pre) {
     ListNode* removed;
     removed = pre->link;
     pre->link = removed->link;
@@ -28,7 +32,13 @@ ListNode* remove(ListNode* head, ListNode* pre) {
 }
 // 맨 앞의 노드 삭제
 ListNode* remove_first(ListNode* head) {
-    remove(head, head);
+    ListNode* removed;
+    if(head == NULL)
+        return NULL;
+    removed = head;
+    head = removed->link;
+    free(removed);
+    return head;
 }
 // linked list 출력
 void print_list(ListNode* head) {
@@ -48,7 +58,4 @@ int main() {
         print_list(head);
     }
     return 0;
-}
-
-int main() {
 }
