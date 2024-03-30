@@ -1,11 +1,24 @@
 import time
 
+# callback 인자를 무조건 받는자는 전제 하
+# callback 함수의 작동 시간을 측정 및 결과 반환
 def estimate_time_func(callback, n) :
-    None
+    start = time.time()
+    list = callback(n)
+    end = time.time()
+    return list, end-start
+
 def find_divisor_list(n: int) :
-    None
+    list = []
+    for i in range(1, n+1) :
+        if(n % i == 0) :
+            list.append(i)
+    return list
 def find_divisor_genetator(n: int) :
-    None
+    for i in range(1, n+1) :
+        if(n % i == 0) :
+            yield i
+    
 if __name__ == "__main__" :
     n = int(input("n: "))
     
