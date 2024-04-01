@@ -43,9 +43,9 @@ ListNode* remove_first(ListNode* head) {
     return head;
 }
 // 다항식 출력
-void print_list(ListNode* head) {
+void poly_print(ListNode* head) {
     for(ListNode* p = head ; p != NULL ; p = p->link)
-        printf("%.1fx^%d->", p->coef, p->expon);
+        printf("%.1fx^%d + ", p->coef, p->expon);
     printf("NULL \n");
 }
 
@@ -57,6 +57,34 @@ ListNode* reverse(ListNode* head) {
         head = head->link;
     }
     return reversed;
+}
+
+ListNode* poly_add(ListNode* head1, ListNode* head2) {
+    ListNode* p1 = head1;
+    ListNode* p2 = head2;
+    ListNode* result = NULL;
+    while(p1 && p2) {
+        if(p1->expon == p2->expon) {
+            double sum = p1->coef + p2->coef;
+            if(sum != 0.0)
+                result = insert_first(result, sum, p1->expon);
+            p1 = p1->link;
+            p2 = p2->link;
+        } else if(p1->expon > p2->expon) {
+            result = insert_first(result, p1->coef, p1->expon);
+            p1 = p1->link;
+        } else {
+            result = insert_first(result, p2->coef, p2->expon);
+            p2 = p2->link;
+        }
+    }
+    // 남아 있는 항들을 결과에 항으로 추가
+    for(; p1 != NULL ; p1 = p1->link)
+        result = insert_first(result, p1->coef, p1->expon);
+    for(; p2 != NULL ; p2 = p2->link)
+        result = insert_first(result, p2->coef, p2->expon);
+
+    return reverse(result);
 }
 
 int main() {
@@ -74,6 +102,14 @@ int main() {
 
     poly_print(list1);
     poly_print(list2);
+    printf("-------------------------------\n");
+    list3 = poly_add(list1, list2);
+
+    poly_print(list3);
+
+    free(list1);
+    free(list2);
+    free(list3);
     
     return 0;
 }
