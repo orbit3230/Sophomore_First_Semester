@@ -1,6 +1,7 @@
 import numpy as np
 
-filename = open(r'C:\Users\hu086\SourceCode\Sophomore_First_Semester\Linear_Algebra\week3\inputfile.txt', 'r')
+## r은 raw string을 의미한다. '\'를 있는 그대로 인식.
+filename = open(r'.\inputfile.txt', 'r')
 k = int(input())
 iteration = int(input())
 
