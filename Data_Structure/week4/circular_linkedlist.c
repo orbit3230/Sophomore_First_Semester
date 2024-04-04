@@ -38,17 +38,15 @@ ListNode* insert_last(ListNode* head, element value) {
 // 맨 앞의 노드 삭제
 ListNode* remove_first(ListNode* head) {
     ListNode* removed;
-    if(head == NULL)
-        return NULL;
+    if(head == NULL) return NULL;
     if(head == head->link) {
-        removed = head;
-        head = NULL;
+        free(head);
+        return NULL;
     }
-    else {
-        removed = head->link;
-        head->link = removed->link;
-    }
+    removed = head->link;
+    head->link = removed->link;
     free(removed);
+    
     return head;
 }
 // 맨 끝의 노드 삭제
