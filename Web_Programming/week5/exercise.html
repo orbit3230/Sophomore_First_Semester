@@ -4,8 +4,24 @@
         <title>CSS Selector Basic</title>
         <style>
             .intro {background-color: lightblue;}
-            #Listfriends {background-color: lightgreen;}
             #duck {background-color: yellow;}
+            p[class]:hover {background-color: greenyellow;}
+            p[class]:active {background-color: royalblue;}
+            p[class] {background-color: lightcoral;}
+            p[lang = "it"] {background-color: lightgoldenrodyellow;}
+            tr[id ~= "h"] {background-color: lightgray;}
+            tr[id *= "1"] {background-color: lightpink;}
+            tr[id |= "table2"] {background-color: lightseagreen;}
+            tr[id ^= "table3"] {background-color: lightskyblue;}
+            tr[id $= "4"] {background-color: lightsteelblue;}
+            input[type = "text"] {background-color: lightyellow;}
+            input[type = "password"] {background-color: lightcyan;}
+            ul > #plutto {background-color: lightseagreen;}
+            ul li {background-color: lightgreen;}
+            input[type = "text"]:focus {background-color: lightcoral;}
+            input[type = "checkbox"]:checked {width : 20px; height: 20px;}
+            input:checked {background-color: lightgray;}
+            input:disabled {background-color: darkgray;}
         </style>
     </head>
     <body>
@@ -18,8 +34,11 @@
         <ul id="Listfriends">
             <li>Goofy</li>
             <li>Mickey</li>
+            <div>
+                <p>But I hate Mickey so much.</p>
+            </div>
             <li>Daisy</li>
-            <li>Pluto</li>
+            <li id = "plutto">Plutto</li>
         </ul>
         <p class="myqoute">All my friends are great!<br> But I really like Daisy!!</p>
         <p lang="it" title="Hello beautiful">Ciao bella</p>
@@ -27,26 +46,38 @@
         <h3>We are all animals!</h3>
         <p><b>My last discoveros have led me to believe that we are all animals;</b></p>
         <table border="1">
-            <tr>
+            <tr id = "table h">
                 <th>Name</th>
                 <th>Type of Animal</th>
             </tr>
-            <tr>
+            <tr id = "table1">
                 <td>Mickey</td>
                 <td>Mouse</td>
             </tr>
-            <tr>
+            <tr id = "table2">
                 <td>Goofy</td>
                 <td>Dog</td>
             </tr>
-            <tr>
+            <tr id = "table3">
                 <td>Daisy</td>
                 <td id="duck">Duck</td>
             </tr>
-            <tr>
+            <tr id = "table4">
                 <td>Plutto</td>
                 <td>Dog</td>
             </tr>
         </table>
     </body>
+    <br>
+    <form>
+        <input type = "text">
+        <input type = "password">
+        <label for="checking">Checking</label>
+        <input type = "checkbox" name="checking">
+        <br>
+        <h4>사용 가능</h4>
+        <input>
+        <h4>사용 불가능</h4>
+        <input disabled="disabled">
+    </form>
 </html>
