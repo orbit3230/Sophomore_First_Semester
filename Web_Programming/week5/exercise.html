@@ -17,7 +17,7 @@
             input[type = "text"] {background-color: lightyellow;}
             input[type = "password"] {background-color: lightcyan;}
             ul > #plutto {background-color: lightseagreen;}
-            ul li {background-color: lightgreen;}
+            ul li:nth-child(2n+1) {background-color: lightgreen; list-style: none;}
             input[type = "text"]:focus {background-color: lightcoral;}
             input[type = "checkbox"]:checked {width : 20px; height: 20px;}
             input:checked {background-color: lightgray;}
@@ -35,9 +35,9 @@
             <li>Goofy</li>
             <li>Mickey</li>
             <div>
-                <p>But I hate Mickey so much.</p>
+                <li>But I hate Mickey so much.</li> 
             </div>
-            <li>Daisy</li>
+            <li id = "plutto">Daisy</li>
             <li id = "plutto">Plutto</li>
         </ul>
         <p class="myqoute">All my friends are great!<br> But I really like Daisy!!</p>
