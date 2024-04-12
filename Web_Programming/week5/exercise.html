@@ -31,6 +31,22 @@
                 text-align: center;
                 border-radius: 100px 50px / 50px 100px;
             }
+            #b2 {
+                width: 100px;
+                height: 100px;
+                padding: 100px;
+                border: 1px solid red;
+                margin : 10px;
+                display: inline-block;
+                text-align: center;
+            }
+            body {
+                background-image: linear-gradient(rgba(0,0,255,0.5), rgba(255,255,0,0.5)), url("https://i.imgur.com/ltpw3k1.png");
+                background-size: 50%;
+                background-repeat: repeat repeat;
+                background-attachment: fixed;
+                background-position: 50% 100%;
+            }
         </style>
     </head>
     <body>
@@ -83,6 +99,9 @@
         <input type = "password">
         <label for="checking">Checking</label>
         <input type = "checkbox" name="checking">
+        <br>
+        <br>
+        <span id="b1">block1</span> <span id="b2">block2</span> <span id="b3">block3</span>
         <br>
         <h4>사용 가능</h4>
         <input>
