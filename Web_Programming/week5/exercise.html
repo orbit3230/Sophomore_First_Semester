@@ -3,16 +3,17 @@
     <head>
         <title>CSS Selector Basic</title>
         <style>
+            h1 {background-color: lightcyan; font-weight: 700;}
             .intro {background-color: lightblue;}
             #duck {background-color: yellow;}
             p[class]:hover {background-color: greenyellow;}
             p[class]:active {background-color: royalblue;}
             p[class] {background-color: lightcoral;}
-            p[lang = "it"] {background-color: lightgoldenrodyellow;}
-            tr[id ~= "h"] {background-color: lightgray;}
-            tr[id *= "1"] {background-color: lightpink;}
-            tr[id |= "table2"] {background-color: lightseagreen;}
-            tr[id ^= "table3"] {background-color: lightskyblue;}
+            p[lang = "it"] {background-color: lightgoldenrodyellow; font-weight: 700;}
+            tr[id ~= "h"] {background-color: lightgray; font-size: xx-large; font-family:'Segoe UI';}
+            tr[id *= "1"] {background-color: lightpink; font-size: 12px;}
+            tr[id |= "table2"] {background-color: lightseagreen; font-size: 1.2em; font-family:fantasy;}
+            tr[id ^= "table3"] {background-color: lightskyblue; font-size: 50%}
             tr[id $= "4"] {background-color: lightsteelblue;}
             input[type = "text"] {background-color: lightyellow;}
             input[type = "password"] {background-color: lightcyan;}
@@ -47,6 +48,11 @@
                 background-attachment: fixed;
                 background-position: 50% 100%;
             }
+            #boxBorder {width: 400px; height: 100px; position: relative; border: 3px solid black; overflow-y: scroll;}
+            .box {width: 100px; height: 100px; position: absolute;}
+            .box:nth-child(1) {background-color: red; left: 10px; top: 10px; z-index: 100;}
+            .box:nth-child(2) {background-color: green; left: 50px; top: 50px; z-index: 50;}
+            .box:nth-child(3) {background-color: blue; left: 150px; top: 150px;}
         </style>
     </head>
     <body>
@@ -67,7 +73,11 @@
         </ul>
         <p class="myqoute">All my friends are great!<br> But I really like Daisy!!</p>
         <p lang="it" title="Hello beautiful">Ciao bella</p>
-
+        <div id="boxBorder">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
         <h3>We are all animals!</h3>
         <p><b>My last discoveros have led me to believe that we are all animals;</b></p>
         <table border="1">
