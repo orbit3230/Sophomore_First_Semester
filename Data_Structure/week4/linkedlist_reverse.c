@@ -63,6 +63,5 @@ int main() {
         head = insert_first(head, i*10);
     print_list(head);
     print_list(reverse(head));
-    print_list(head);
     return 0;
 }

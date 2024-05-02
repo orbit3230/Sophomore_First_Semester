@@ -8,15 +8,15 @@ typedef struct {
 
 polynomial yA[MAX_TERMS] = {{8, 3}, {7, 1}, {1, 0}};
 polynomial yB[MAX_TERMS] = {{10, 3}, {3, 2}, {1, 0}};
-polynomial y[MAX_TERMS];  // 결과 다항식
+polynomial y_[MAX_TERMS];  // 결과 다항식
 int y1Index = 0;
 int y2Index = 0;
-int yIndex = 0;
+int y_Index = 0;
 
 void attach(float coef, int expo) {
-    y[yIndex].coef = coef;
-    y[yIndex].expo = expo;
-    yIndex++;
+    y_[y_Index].coef = coef;
+    y_[y_Index].expo = expo;
+    y_Index++;
 }
 void poly_add2() {
     
@@ -30,28 +30,39 @@ void poly_add2() {
             y1Index++;
         }
         else if(expo_y1 == expo_y2) {
-            attach(yA[y1Index].coef - yB[y2Index].coef, expo_y1);
+            float temp = yA[y1Index].coef - yB[y2Index].coef;
+            if(temp != 0.0)
+                attach(temp, expo_y1);
             y1Index++;
             y2Index++;
         }
         else {
-            attach(yB[y2Index].coef, expo_y2);
+            attach(yB[y2Index].coef * -1.0, expo_y2);
             y2Index++;
         }
     }
 }
 void print_poly(polynomial y[], int index) {
     int i;
-    for(i = 0 ; i < index-1 ; i++)
-        printf("%3.1fx^%d + ", y[i].coef, y[i].expo);
-    printf("%3.1f\n", y[i].coef);
+    for(i = 0 ; i < index ; i++) {
+        if(i == 0) {
+            printf("%3.1fx^%d", y[i].coef, y[i].expo);
+        }
+        else {
+            if(y[i].coef >= 0.0)
+                printf(" + %3.1fx^%d", y[i].coef, y[i].expo);
+            else
+                printf(" - %3.1fx^%d", y[i].coef*-1.0, y[i].expo);
+        }
+    }
+    printf("\n");
 }
- int main(void)
- {
+int main(void) 
+{
     poly_add2();
     print_poly(yA, y1Index);
     print_poly(yB, y2Index);
     printf("-----------------------------------------------------------------------------\n");
-    print_poly(y, yIndex);
+    print_poly(y_, y_Index);
     return 0;
- }
+}

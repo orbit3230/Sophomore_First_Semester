@@ -60,9 +60,8 @@ ListNode* concat_list(ListNode* head1, ListNode* head2) {
             newHead = newHead->link;
         }
         newHead->link = head2;
-        // newHead는 사라지지만, 주소를 반환하고 사라진다.
-        // 이 주소는 head1이 가리키는 주소이므로, head1을 반환하는 것과 같다.
-        return newHead;
+
+        return head1;
     }
 }
 
