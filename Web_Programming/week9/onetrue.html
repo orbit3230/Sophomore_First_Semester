@@ -1,52 +1,79 @@
 <!DOCTYPE html>
 <html>
-<style>
-    /* 중앙 정렬 */
-    body {width: 500px; margin: 10px auto; text-align: center;}
-    #middle {overflow: hidden;}
-    #left {float: left; width: 128px; border: 1px solid black; margin: 10px;}
-    #right {float: left; width: 328px; border: 1px solid black; margin: 10px;}
-    #top {border: 1px solid black;}
-    #bottom {border: 1px solid black;}
+<head>
+    <style>
+        /* 중앙 정렬 */
+        body > div{width: 500px; margin: 10px auto; text-align: center;}
+        #middle {overflow: hidden;}
+        #left {float: left; width: 128px; border: 1px solid black; margin: 10px;}
+        #right {float: left; width: 328px; border: 1px solid black; margin: 10px;}
+        #top {border: 1px solid black;}
+        #bottom {border: 1px solid black;}
 
-    /* 절대 위치 */
-    #container {
-        position: relative;
-        width: 500px;
-        height: 300px;
-        border: 3px solid black;
-        overflow: hidden;
-    }
-    #red, #green, #blue, #yellow {
-        position: absolute;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-    }
-    #red {
-        background: red;
-        left: 20px; top: 20px;
-    }
-    #green {
-        background: green;
-        right: 20px; top: 20px;
-    }
-    #blue {
-        background: blue;
-        left: 20px; bottom: 20px;
-    }
-    #yellow {
-        background: yellow;
-        right: 20px; bottom: 20px;
-    }
-    /* 요소를 중앙에 배치 */
-    #containerOfcontainer {
-        width: 500px; height: 300px;
-        position: absolute;
-        top: 50%; left: 50%;
-        margin-left: -250px; margin-top: -150px;
-    }
-</style>
+        /* 절대 위치 */
+        #container {
+            position: relative;
+            width: 500px;
+            height: 300px;
+            border: 3px solid black;
+            overflow: hidden;
+        }
+        #red, #green, #blue, #yellow {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+        }
+        #red {
+            background: red;
+            left: 20px; top: 20px;
+        }
+        #green {
+            background: green;
+            right: 20px; top: 20px;
+        }
+        #blue {
+            background: blue;
+            left: 20px; bottom: 20px;
+        }
+        #yellow {
+            background: yellow;
+            right: 20px; bottom: 20px;
+        }
+        /* 요소를 중앙에 배치 */
+        #containerOfcontainer {
+            width: 500px; height: 300px;
+            position: absolute;
+            top: 50%; left: 50%;
+            margin-left: -250px; margin-top: -150px;
+        }
+        /* 요소를 고정위치에 배치 */
+        #menu > #menu1 {
+            position : fixed;
+            top:0px; left:0px; bottom:0px;
+            width: 100px;
+            background-color: royalblue;
+        }
+        #menu > #menu2 {
+            position : fixed;
+            left:0px; right:0px; bottom:0px;
+            height: 100px;
+            background-color: salmon;
+        }
+        /* 글자 생략 */
+        h1 {
+            text-align: center;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+        p {
+            text-align: center;
+            white-space: normal;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 <div id="top">topnotch</div>
@@ -64,5 +91,11 @@
         <div id="yellow"></div>
     </div>
 </div>
+<div id="menu">
+    <div id="menu1"></div>
+    <div id="menu2"></div>
+</div>
+<h1>Lorem ipsum dolor sit amet, consectetur adipiscing elit</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, Cras faucibus hendrerit nunc at consec. tetur. In hac habitasse platea dictumst. Ut a luctus neque, et tempor erat. Aliquam quis arcu id lectus fringilla volutpat id tempor lorem. Duis vitae odio vehicula dui vulputate mollis et sit amet mauris. Nulla facilisi. Praesent non sapien ac sapien malesuada ornare eget at libero. Aenean et faucibus arcu, id maximus mi. Curabitur tincidunt mi vitae orci porttitor, quis laoreet justo iaculis.</p></p>
 </body>
 </html>
