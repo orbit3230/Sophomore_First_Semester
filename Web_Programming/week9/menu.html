@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>패턴</title>
+        <meta name="viewport" content="user-scalable=no,initial-scale=1,maximum-scale=1">
+        <style>
+            /* 그 외 장치일 경우 */
+            *{margin:0; padding: 0;}
+            body{width: 960px; margin: 0 auto; overflow: hidden;}
+            #section{width:700px; float:right;}
+            #menu{width:260px; float:left;}
+            /* 모바일 장치일 경우 */
+            @media screen and (max-width:767px) {
+                body{width:auto}
+                #section{width:auto; float:none;}
+                #menu{width:auto; float:none;}
+            }
+        </style>
+    </head>
+    <body>
+        <div id="section">
+            <h1>Lorem ipsum</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p>
+        </div>
+        <div id="menu">
+            <ul>
+                <li>메뉴A</li><li>메뉴B</li><li>메뉴C</li><li>메뉴D</li>
+            </ul>
+        </div>
+    </body>
+</html>
