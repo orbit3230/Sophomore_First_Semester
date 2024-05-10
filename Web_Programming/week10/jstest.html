@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script>
+            function callTenTimes(callback) {
+                for (var i = 0; i < 10; i++) {
+                    callback(i);
+                }
+            }
+
+            callTenTimes(function() {
+                document.write("함수 호출<br>");
+            });
+        </script>
+    </head>
+    <body>
+    </body>
+</html>
