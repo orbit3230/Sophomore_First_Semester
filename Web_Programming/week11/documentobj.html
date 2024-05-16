@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DocumentObject</title>
+    <script>
+        window.onload = function() {
+            var headers = document.querySelectorAll('h1');
+            // debug
+            console.log(headers);
+            for(var h of headers) {
+                h.style.color = 'orange';
+                h.style.background = 'red';
+                h.innerHTML = 'Cristiano Ronaldo';
+            }
+            const value = document.querySelector('#text');
+            console.log(value.textContent);
+            console.log(value.innerText);
+            console.log(value.innerHTML);
+            var image = document.getElementById('image');
+            image.src = 'https://i.imgur.com/ltpw3k1.png';
+            image.width = 300;
+            image.height = 200;
+            var clock = document.getElementById('clock');
+            setInterval(function() {
+                var date = new Date();
+                clock.innerHTML = date.toLocaleString();
+            }, 1000);
+        }
+    </script>
+</head>
+<body>
+    <h1>Header</h1>
+    <h1>Header</h1>
+    <h1>Header</h1>
+    <div id="text">
+        Muchas gracias aficion esto espara vosotros<br><strong>SIUUUU</strong>!
+    </div>
+    <img id="image">
+    <h2 id="clock"></h1>
+</body>
+</html>
