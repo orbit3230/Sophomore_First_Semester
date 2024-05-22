@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event</title>
+    <script>
+        window.onload = function(event) {
+            console.log(event);
+            function siuuuuuuuu() {
+                alert('Siuuuuuuuu');
+            }
+            var ronaldo = document.getElementById('ronaldo');
+            ronaldo.onclick = function() {
+                alert('Ronaldo is GOAT');
+            }
+            var button = document.getElementById("button");
+            var addFunc = document.getElementById("addfunc");
+            var removeFunc = document.getElementById("removefunc");
+
+            function event_handler() { alert("표준 이벤트 모델");}
+
+            // 버튼에 이벤트 모델 연결
+            addFunc.addEventListener('click',
+                function() {
+                    button.addEventListener('click', event_handler);
+                }
+            );
+            // 버튼에 이벤트 모델 제거
+            removeFunc.addEventListener('click',
+                function() {
+                    button.removeEventListener('click', event_handler);
+                }
+            );
+
+            var link = document.getElementById("link");
+            // 기본 이벤트 제거
+            link.onclick = function() {
+                return false;
+            }
+        }
+    </script>
+</head>
+<body>
+    <button onclick="siuuuuuuuu()">호우</button>
+    <button id="ronaldo">호우호우</button>
+    <br>
+    <br>
+
+    <button id="button">버튼</button>
+    <br>
+    <button id="addfunc">이벤트 모델 연결</button>
+    <button id="removefunc">이벤트 모델 제거</button>
+    <br>
+    <br>
+
+    <a id="link" href="orbit3230.github.io">링크</a>
+</body>
+</html>
