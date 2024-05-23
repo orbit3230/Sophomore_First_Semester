@@ -10,8 +10,11 @@ typedef struct HeapType {
     int heap_size;
 } HeapType;
 
+HeapType* create() {
+    return (HeapType *)malloc(sizeof(HeapType) * MAX_ELEMENT);
+}
+
 void init(HeapType *h) {
-    h->heap = (Element *)malloc(sizeof(Element) * MAX_ELEMENT);
     h->heap_size = 0;
 }
 
@@ -51,8 +54,8 @@ Element pop_max_heap(HeapType *h) {
 int main() {
     Element e1 = { 10 }, e2 = { 5 }, e3 = { 30 };
     Element e4, e5, e6;
-    HeapType* heap;
-    init(heap);    // 초기화
+    HeapType* heap = create();
+    init(&heap);    // 초기화
     // 삽입
     push_max_heap(heap, e1);
     push_max_heap(heap, e2);

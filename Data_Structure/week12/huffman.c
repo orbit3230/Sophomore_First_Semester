@@ -1,8 +1,16 @@
 #include <stdio.h>
 #include <stdlib.h>
 #define MAX_ELEMENT 200
+
+typedef struct TreeNode {
+    int data;  // weight
+    char ch;
+    struct TreeNode *left, *right;
+} TreeNode;
+
 typedef struct Element {
     int key;
+    TreeNode *node;
 } Element;
 
 typedef struct HeapType {
@@ -10,11 +18,8 @@ typedef struct HeapType {
     int heap_size;
 } HeapType;
 
-HeapType* create() {
-    return (HeapType *)malloc(sizeof(HeapType) * MAX_ELEMENT);
-}
-
 void init(HeapType *h) {
+    h->heap = (Element *)malloc(sizeof(Element) * MAX_ELEMENT);
     h->heap_size = 0;
 }
 
@@ -51,22 +56,37 @@ Element pop_min_heap(HeapType *h) {
     return item;
 }
 
-int main() {
-    Element e1 = { 10 }, e2 = { 5 }, e3 = { 30 };
-    Element e4, e5, e6;
-    HeapType* heap = create();
-    init(heap);    // 초기화
-    // 삽입
-    push_min_heap(heap, e1);
-    push_min_heap(heap, e2);
-    push_min_heap(heap, e3);
-    // 삭제
-    e4 = pop_min_heap(heap);
-    printf("< %d > ", e4.key);
-    e5 = pop_min_heap(heap);
-    printf("< %d > ", e5.key);
-    e6 = pop_min_heap(heap);
-    printf("< %d > \n", e6.key);
+TreeNode* huffman_tree(int freq[], char ch_list[], int n) {
+    TreeNode *node, *x, *y;
+    HeapType heap;
+    Element e, e1, e2;
 
-    free(heap);
+    init(&heap);
+    for (int i = 0; i < n; i++) {
+        node = (TreeNode *)malloc(sizeof(TreeNode));
+        node->data = freq[i];
+        node->ch = ch_list[i];
+        node->left = node->right = NULL;
+        e.key = node->data;
+        e.node = node;
+        push_min_heap(&heap, e);
+    }
+    for (int i = 1; i < n; i++) {
+        e1 = pop_min_heap(&heap);
+        e2 = pop_min_heap(&heap);
+        x = e1.node;
+        y = e2.node;
+        node = (TreeNode *)malloc(sizeof(TreeNode));
+        node->data = x->data + y->data;
+        node->left = x;
+        node->right = y;
+        e.key = node->data;
+        e.node = node;
+        push_min_heap(&heap, e);
+    }
+    return pop_min_heap(&heap).node;
+}
+
+int main() {
+    
 }
