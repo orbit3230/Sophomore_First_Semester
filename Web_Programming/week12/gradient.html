@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>jQuery Basic</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script>
+    // 이벤트 연결. window.onload와 같은 기능 수행
+    $(document).ready(function () {
+      var output = '';
+      for(var i = 0 ; i < 256 ; i++)
+        output += '<div></div>';
+    document.body.innerHTML = output;
+    $('div').css({
+        height: 2,
+        backgroundColor: function(i) {
+            return 'rgb(' + i + ', ' + i + ', ' + i + ')';
+        }
+    })
+    });
+ </script>
+ <style>
+ </style>
+</head>
+<body>
+</body>
+</html>

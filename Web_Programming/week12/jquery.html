@@ -11,12 +11,58 @@
       console.log(h1) 
       h1.css('color', 'red')
       h1.css('background', 'yellow')
+
+      $('img').attr('src', function(index) {
+        console.log(index);
+        var size = (index + 1) * 100;
+        return 'http://placehold.it/' + size + 'x' + 100;
+      })
+
+      $('.box').each(function(index, item) {
+        console.log(index);
+        console.log(item);
+        console.log($(item).css('color'));
+        console.log($(item).css('float'));
+      })
+
+      $('.boxy').css({
+        float: 'left',
+        width: '100px',
+        height: '100px',
+        margin: '10px',
+        backgroundColor: 'red'
+      })
+
+      var text = $('h2').text();
+      var html = $('h2').html();
+      $('body').append('<p>text: ' + text + '</p>');
+      $('body').append('<p>html: ' + html + '</p>');
+      $('h2:nth-child(1)').text('<a href="#">text()</a>');
+      $('h2:nth-child(2)').html('<a href="#">html()</a>');
     });
  </script>
+ <style>
+  .box{float: left; margin:10px;}
+ </style>
 </head>
 <body>
   <h1 class="header1">Header</h1>
   <h1 class="header2">Header</h1>
   <h1 class="header3">Header</h1>
+  <img>
+  <img>
+  <img>
+  <div class="box", style="color:red">red</div>
+  <div class="box", style="color:blue">blue</div>
+  <div class="box", style="color:green">green</div>
+  <br>
+  <div class="boxy"></div>
+  <div class="boxy"></div>
+  <div class="boxy"></div>
+  <br>
+  <div>
+    <h2>Ronaldo - 7</h2>
+    <h2>Messi - 10</h2>
+  </div>
 </body>
 </html>
