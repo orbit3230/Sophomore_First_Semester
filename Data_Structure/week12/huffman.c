@@ -87,6 +87,31 @@ TreeNode* huffman_tree(int freq[], char ch_list[], int n) {
     return pop_min_heap(&heap).node;
 }
 
+void print_codes(TreeNode *root, int codes[], int top) {
+    // 왼쪽으로 가면서 1을 저장
+    if (root->left) {
+        codes[top] = 1;
+        print_codes(root->left, codes, top + 1);
+    }
+    // 오른쪽으로 가면서 0을 저장
+    if (root->right) {
+        codes[top] = 0;
+        print_codes(root->right, codes, top + 1);
+    }
+    // 리프 노드에 도달하면 코드를 출력
+    if (!(root->left) && !(root->right)) {
+        printf("'%c': ", root->ch);
+        for (int i = 0; i < top; i++)
+            printf("%d", codes[i]);
+        printf("\n");
+    }
+}
+
 int main() {
-    
+    char ch_list[] = {'s', 'i', 'n', 't', 'e'};
+    int freq[] = {4, 6, 8, 12, 15};
+    int codes[MAX_ELEMENT];
+    TreeNode *root = huffman_tree(freq, ch_list, 5);
+    print_codes(root, codes, 0);
+    return 0;
 }

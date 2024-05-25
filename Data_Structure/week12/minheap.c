@@ -11,10 +11,11 @@ typedef struct HeapType {
 } HeapType;
 
 HeapType* create() {
-    return (HeapType *)malloc(sizeof(HeapType) * MAX_ELEMENT);
+    return (HeapType *)malloc(sizeof(HeapType));
 }
 
 void init(HeapType *h) {
+    h->heap = (Element *)malloc(sizeof(Element) * MAX_ELEMENT);
     h->heap_size = 0;
 }
 
@@ -68,5 +69,6 @@ int main() {
     e6 = pop_min_heap(heap);
     printf("< %d > \n", e6.key);
 
+    free(heap->heap);
     free(heap);
 }
