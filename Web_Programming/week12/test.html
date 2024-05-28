@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>Number Guessing Game</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            background-color: #f2f2f2;
+            margin: 20px;
+        }
+        h2 {
+            color: #333;
+        }
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="button"] {
+            width: 100%;
+            background-color: #4caf50;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="button"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+    <script>
+        var f = Math.random() * 100;	// f는 0.0~100.0 미만의 실수
+        var computerNumber = Math.floor(f) + 1; // computerNumber는 1~100까지의 정수
+        var guesses = 0;
+        function guess() {
+            var inputValue = parseInt($('#user').val());
+            if(inputValue == computerNumber) {
+                $('#result').val('정답입니다!');
+            }
+            else if(inputValue < computerNumber) {
+                $('#result').val('더 큰 수를 입력하세요.');
+            }
+            else {
+                $('#result').val('더 작은 수를 입력하세요.');
+            }
+            guesses++;
+            $('#guesses').val(guesses);
+        }
+    </script>
+</head>    
+<body>
+    <h2>숫자 맞추기 게임</h2>
+    <p>이 게임은 컴퓨터가 생성한 숫자를 맞추는 게임입니다. 숫자는 1부터 100 사이에 있습니다.</p>
+    <form>
+        숫자:
+        <input type="text" id="user" size="5">
+        <input type="button" value="확인" onclick="guess();"><br>
+        추측횟수:
+        <input type="text" id="guesses" size="5"><br>
+        힌트:
+        <input type="text" id="result" size="16"><br>
+    </form>
+</body>
+</html>
