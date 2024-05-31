@@ -63,16 +63,49 @@
       .on('click', function() {$(this).css('background', 'purple');})
       .on('mouseenter', function() {$(this).css('background', 'blue');})
       .on('mouseleave', function() {$(this).css('background', 'orange');});
-    });
 
-    $('form').submit(function(event) {
-      var value = $('input').val();
-      if(/^[가-힣]([가-힣])+/.test(value)) {
-        alert('진행시켜');
-      } else {
-        alert('나가 이자식아'); event.preventDefault();
-      }
+      $('form').submit(function(event) {
+        var value = $('input').val();
+        if(/^[가-힣]([가-힣])+/.test(value)) {
+          alert('진행시켜');
+        } else {
+          alert('나가 이자식아'); event.preventDefault();
+        }
+      });
+  
+      $('button#fade').click(function() {
+        $('.hoverBox').fadeToggle(3000);
+      });
+
+      $('button#growing').click(function() {
+        setInterval(function() {
+          $('.hoverBox').animate({
+            width: 300,
+            height: 300
+          }, 1000)
+          .delay(1000)
+          .animate({
+            width: 100,
+            height: 100
+          }, 1000)
+        }, 1000);
+      });
+
+      var clearQueue = false; var goToEnd = false;
+      $('input#clearQueue').change(function() {
+        clearQueue = $(this).prop(':checked');
+      });
+      $('input#goToEnd').change(function() {
+        goToEnd = $(this).prop(':checked');
+      });
+
+      $('button#stop').click(function() {
+        $('.hoverBox').stop(clearQueue, goToEnd);
+      });
+
     });
+  
+
  </script>
  <style>
   .box{float: left; margin:10px;}
@@ -102,6 +135,12 @@
     <h2>Ronaldo - 7</h2>
     <h2>Messi - 10</h2>
   </div>
+  <button id="fade">Fade In/Out Hover Box</button>
+  <button id="growing">아이키커</button>
+  <button id="stop">Stop</button>
+  <label>clearQueue</label><input id="clearQueue" type="checkbox">
+  <br>
+  <label>goToEnd</label><input id="goToEnd" type="checkbox">
   <div class="hoverBox"></div>
   <div class="hoverBox"></div>
   <div id="box"></div>

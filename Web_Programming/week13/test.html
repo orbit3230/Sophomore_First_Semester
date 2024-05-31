@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>테스트</title>
+  <script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+  <script>
+    $(document).ready(function () {
+        $('div').each(function(index, item) {
+            // size
+            var size = $(item).attr('size');
+            // size가 키워드인 경우 숫자로 변환
+            if(size == 'small') size = 50;
+            else if(size == 'normal') size = 100;
+            else if(size == 'large') size = 200;
+            else if(size == 'tiny') size = NaN;
+            // color
+            var color = $(item).attr('color');
+
+            $(item).css({
+                width: size,
+                height: size,
+                backgroundColor: color
+            });
+
+            // size 속성을 가지지 않은 경우 default로 100
+            if(size == undefined) size = 100;
+            // color 속성을 가지지 않은 경우 default로 black
+            if(color == undefined) color = 'black';
+            $(item).css({
+                width: size,
+                height: size,
+                backgroundColor: color
+            });
+        });
+    });
+ </script>
+ <style>
+ </style>
+</head>
+<body>
+  <div color="yellow"></div>
+  <div size="small" color="red"></div>
+  <div size="normal" color="rgb(0, 0, 255)"></div>
+  <div size="large" color="green"></div>
+  <div size="500"></div>
+  <div size="tiny" color="red"></div>
+  <div size="50" color="kim"></div>
+</body>
+</html>
