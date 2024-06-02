@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 
 typedef struct GraphType {
     int n; // number of vertices
@@ -6,10 +7,11 @@ typedef struct GraphType {
     int *visited;
 } GraphType;
 
-int max_dist = 0;
+int left_max = 0;
+int right_max = 0;
 
 void init(GraphType* g, int n) {
-    g->n = 0;
+    g->n = n;
     g->adj_mat = (int**)malloc(sizeof(int*) * n);
     for (int i = 0; i < n; i++) {
         g->adj_mat[i] = (int*)malloc(sizeof(int) * n);
@@ -23,48 +25,57 @@ void init(GraphType* g, int n) {
     }
 }
 
-void insert_vertex(GraphType* g, int v) {
-    if (((g->n) + 1) > 100) {
-        printf("Vertex Overflow\n");
-        return;
-    }
-    g->n++;
-}
-
 void insert_edge(GraphType* g, int start, int end, int weight) {
-    if (start >= g->n || end >= g->n) {
-        printf("Vertex does not exist\n");
-        return;
-    }
     g->adj_mat[start][end] = weight;
     g->adj_mat[end][start] = weight;
 }
 
-// 가장 거리가 먼 두 마을을 찾을 것이다.
-int dfs_search(GraphType* g, int v, int visited[]) {
-    visited[v] = 1;
-    int max = 0;
-    int second_max = 0;
-    for (int i = 0; i < g->n; i++) {
-        if (g->adj_mat[v][i] != 0 && visited[i] == 0) {
-            int path_length = g->adj_mat[v][i] + dfs_search(g, i, visited);
-            if (path_length > max) {
-                second_max = max;
-                max = path_length;
+// 왼쪽으로 뻗어나갔을 때 가장 긴 거리를 찾는다.
+void dfs_search_left(GraphType* g, int start, int visited[], int dist) {
+    visited[start] = 1;
+    for (int i = start+1; i < g->n; i++) {
+        if (g->adj_mat[start][i] && !visited[i]) {
+            int new_dist = dist + g->adj_mat[start][i];
+            if (new_dist > left_max) {
+                left_max = new_dist;
             }
-            else if (path_length > second_max) {
-                second_max = path_length;
-            }
+            dfs_search_left(g, i, visited, new_dist);
         }
     }
-
-    // 가장 긴 두 경로의 합이 최대 거리가 된다.
-    if (max + second_max > max_dist) {
-        max_dist = max + second_max;
+    return;
+}
+// 오른쪽으로 뻗어나갔을 때 가장 긴 거리를 찾는다.
+void dfs_search_right(GraphType* g, int start, int visited[], int dist) {
+    visited[start] = 1;
+    for (int i = start+1; i < g->n; i++) {
+        if (g->adj_mat[start][i] && !visited[i]) {
+            int new_dist = dist + g->adj_mat[start][i];
+            if (new_dist > right_max) {
+                right_max = new_dist;
+            }
+            dfs_search_right(g, i, visited, new_dist);
+        }
     }
+    return;
+}
 
-    // 가장 긴 경로의 길이를 반환한다.
-    return max;
+
+// 가장 거리가 먼 두 마을을 찾을 것이다.
+// 가지를 왼쪽으로 뻗어나갔을 때의 가장 긴 거리와
+// 오른쪽으로 뻗어나갔을 때의 가장 긴 거리를 더해서 반환한다.
+void dfs_search(GraphType* g, int start, int visited[]) {
+    int from = start+1;
+    while((from < g->n) && !g->adj_mat[start][from]) {
+        from++;
+    }
+    dfs_search_left(g, from, visited, g->adj_mat[start][from]);
+    from++;
+    while((from < g->n) && !g->adj_mat[start][from]) {
+        from++;
+    }
+    dfs_search_right(g, from, visited, g->adj_mat[start][from]);
+
+    return;
 }
 
 int main() {
@@ -79,13 +90,35 @@ int main() {
         init(&g, n);
 
         int u, v, d;  // u : uth vertex, v : vth vertex, d : distance
-        for(int j = 0; j < n; j++) {
+        for(int j = 0; j < n-1; j++) {
             scanf("%d %d %d", &u, &v, &d);
-            insert_vertex(&g, u);
-            insert_vertex(&g, v);
+            u--; v--; // 0-based index
             insert_edge(&g, u, v, d);
         }
 
-        printf("%d\n", dfs_search(&g, 0, g.visited));
+        int max = 0;
+        int sumLR;
+        for(int j = 0; j < n; j++) {
+            // --- initialize ---
+            left_max = 0;
+            right_max = 0;
+            for(int k = 0; k < n; k++) {
+                g.visited[k] = 0;
+            }
+            // ------------------
+            dfs_search(&g, j, g.visited);
+            sumLR = left_max + right_max;
+            if (sumLR > max) {
+                max = sumLR;
+            }
+        }
+
+        printf("%d\n", max);
+
+        for (int j = 0; j < n; j++) {
+            free(g.adj_mat[j]);
+        }
+        free(g.adj_mat);
+        free(g.visited);
     }
 }
