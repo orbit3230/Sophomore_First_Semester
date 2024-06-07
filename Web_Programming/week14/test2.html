@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<style>
+			* {padding:0; margin: 0;}	
+			#warning {
+				background-color:#f5deb3e6; 
+			}	
+			p {
+				text-align: center; 
+				margin-top: 30%; 
+				color: red;
+			}	
+		</style>
+		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+		<script>
+            $(document).ready(function() {
+                setTimeout(function() {
+                    $('#warning').width(window.innerWidth/2).height(window.innerHeight/2);
+                    $('#warning').css('display', 'block');
+                    $('#warning').css('position', 'absolute');
+                    $('#warning').css('top', '25%');
+                    $('#warning').css('left', '25%');
+                }, 3000);
+                $(window).resize(function() {
+                    $('#warning').width(window.innerWidth/2).height(window.innerHeight/2);
+                });
+            });
+		</script>		
+</head>
+<body>
+	<div id="warning" style='display: none;'>
+		<p style="font-size: 32px;">WARNING!! 3-second Usage Warning</p>
+	</div>
+	<iframe src="https://www.google.com/webhp?igu=1" style="display:block; width:100vw; height: 100vh; border: none;"></iframe>
+</body>
+		
+</html>

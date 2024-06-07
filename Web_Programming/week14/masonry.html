@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Masonry</title>
+    <style>
+        * { margin: 0; padding: 0; }
+        .box { margin: 5px; }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            for (var i = 0; i < 100; i++) {
+                var height = Math.floor(Math.random() * 100) + 50;
+                $('<img>')
+                    .attr({ src: 'http://placehold.it/100x' + height, 'width': 100, 'height': height })
+                    .addClass('box').appendTo('body');
+            }
+            $('body').masonry({columnWidth: 110});
+        })
+    </script>
+</head>
+<body>
+</body>
+</html>

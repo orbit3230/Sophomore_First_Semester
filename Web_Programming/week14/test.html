@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('.menu a').click(function() {
+                // 우선 모든 태그들을 생략
+                $('div.nav > div').attr('style', 'display: none;');
+                // 클릭한 태그만 show
+                var target = $(this).attr('target-menu'); // target-menu 속성 값 획득
+                $('#' + target).attr('style', 'display: block;');
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class = 'nav'>
+        <ul class = 'menu'>
+            <li><a target-menu = 'page_home' href = '#home'>HOME</a></li>
+            <li><a target-menu = 'page_about' href = '#about'>ABOUT ME</a></li>
+            <li><a target-menu = 'page_address' href = '#address'>ADDRESS</a></li>
+            <li><a target-menu = 'page_extra' href = '#address'>ADDRESS</a></li>
+    </div>
+    <div class = 'nav'>
+        <div id = 'page_home'> ... page_home 태그 생략 ... </div>
+        <div id = 'page_about' style = 'display: none;'> ... page_about 태그 생략 ... </div>
+        <div id = 'page_address' style = 'display: none;'> ... page_address 태그 생략 ... </div>
+        <div id = 'page_extra' style = 'display: none;'> ... page_address 태그 생략 ... </div>
+    </div>
+</body>
+</html>
